@@ -3,7 +3,7 @@
 ### This projet is a challange, of Rocketseat GoStack class.
 
 
-<img src="../Fundamentos-React-Native/src/assets/Screenshot_1592342763.png">
+<img src="./src/assets/Screenshot_1592342763.png">
 
 
 > [!TIP]
