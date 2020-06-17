@@ -21,7 +21,6 @@ interface CartContext {
   addToCart(item: Omit<Product, 'quantity'>): void;
   increment(id: string): void;
   decrement(id: string): void;
-  cartTotalPrice(): number;
 }
 
 const CartContext = createContext<CartContext | null>(null);
@@ -85,19 +84,9 @@ const CartProvider: React.FC = ({ children }) => {
     [products, increment],
   );
 
-  const cartTotalPrice = useCallback((): number => {
-    const total = products.reduce((accumulator: number, current) => {
-      const subtotal = current.quantity * current.price;
-
-      return accumulator + subtotal;
-    }, 0);
-
-    return total;
-  }, [products]);
-
   const value = React.useMemo(
-    () => ({ addToCart, increment, decrement, cartTotalPrice, products }),
-    [products, addToCart, increment, decrement, cartTotalPrice],
+    () => ({ addToCart, increment, decrement, products }),
+    [products, addToCart, increment, decrement],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
