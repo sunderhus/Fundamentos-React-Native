@@ -1,6 +1,6 @@
 # GoMarket
 
-### This projet is a challange, of Rocketseat GoStack class.
+### This project is a challenge, of Rocketseat GoStack class.
 
 
 <img src="./src/assets/Screenshot_1592342763.png">
