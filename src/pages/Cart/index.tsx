@@ -55,7 +55,11 @@ const Cart: React.FC = () => {
     return formatValue(total);
   }, [products]);
 
-  const totalItensInCart = useMemo(() => products.length, [products.length]);
+  const totalItensInCart = useMemo(() => {
+    return products.reduce((accumulator, product) => {
+      return accumulator + product.quantity;
+    }, 0);
+  }, [products]);
 
   return (
     <Container>

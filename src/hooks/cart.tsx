@@ -47,6 +47,7 @@ const CartProvider: React.FC = ({ children }) => {
       );
 
       setProducts(newProducts);
+      await AsyncStorage.setItem('@Gomarketplace', JSON.stringify(newProducts));
     },
     [products],
   );
@@ -75,13 +76,17 @@ const CartProvider: React.FC = ({ children }) => {
     async (product: Product) => {
       const productExists = products.some(p => p.id === product.id);
       if (productExists) {
-        increment(product.id);
+        setProducts(
+          products.map(p =>
+            p.id === product.id ? { ...product, quantity: p.quantity + 1 } : p,
+          ),
+        );
       } else {
         setProducts([...products, { ...product, quantity: 1 }]);
       }
       await AsyncStorage.setItem('@Gomarketplace', JSON.stringify(products));
     },
-    [products, increment],
+    [products],
   );
 
   const value = React.useMemo(
